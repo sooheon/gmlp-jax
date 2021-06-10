@@ -1,7 +1,6 @@
 from typing import Optional
 
 import jax.numpy as jnp
-import jax.random
 from flax import linen as nn
 
 
@@ -23,7 +22,9 @@ class gMLP(nn.Module):
         x = nn.LayerNorm()(x)
         attn_out = None
         if self.attn_features:
-            attn_out = TinyAttn(self.attn_features, self.features // 2)(x)
+            attn_out = TinyAttn(
+                features=self.features // 2, attn_features=self.attn_features
+            )(x)
         x = nn.Dense(self.features)(x)
         x = nn.gelu(x)
         x = SGU()(x, attn_out)
