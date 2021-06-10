@@ -4,6 +4,10 @@ gMLPs with Spatial Gating Units in Jax (Flax).
 
 Flax linen API maps pretty much 1:1 with pseudocode in the paper.
 
+![](img/gMLP_block.png)
+![](img/TinyAttn.png)
+
+## Usage
 ```python
 import jax
 import jax.numpy as jnp
